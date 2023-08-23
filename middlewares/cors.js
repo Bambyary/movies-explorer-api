@@ -1,6 +1,6 @@
 const allowedCors = [
-  'http://bambyary.nomoreparties.co',
-  'https://bambyary.nomoreparties.co',
+  'http://sorokina-diplom.nomoredomainsicu.ru',
+  'https://sorokina-diplom.nomoredomainsicu.ru',
   'http://localhost:3000',
   'https://localhost:3000',
   'http://localhost:3001',

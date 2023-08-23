@@ -8,6 +8,7 @@ const { errorHeandler } = require('./middlewares/errorHeandler');
 const { requestLogger, errorLogger } = require('./middlewares/logger');
 const NotFound = require('./errors/NotFound');
 const routes = require('./routes/index');
+const cors = require('./middlewares/cors');
 
 const app = express();
 
@@ -23,6 +24,7 @@ mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb')
 
 app.use(helmet());
 app.use(limiter);
+app.use(cors);
 app.use(express.json());
 app.use(requestLogger);
 app.use('/', routes);
