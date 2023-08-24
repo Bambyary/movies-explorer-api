@@ -3,10 +3,10 @@ const Movie = require('../models/movie');
 const BadRequest = require('../errors/BadRequest');
 const Forbidden = require('../errors/Forbidden');
 
-const getMovies = (_req, res, next) => {
-  Movie.find({})
+const getMovies = (req, res, next) => {
+  Movie.find({ owner: req.user._id })
     .orFail()
-    .then((movie) => res.status(200).send(movie))
+    .then((movie) => res.send(movie))
     .catch((err) => next(err));
 };
 
@@ -40,9 +40,7 @@ const createMovie = (req, res, next) => {
     nameRU,
     nameEN,
   })
-    .then((movie) => {
-      res.status(200).send(movie);
-    })
+    .then((movie) => res.send(movie))
     .catch((err) => {
       if (err instanceof ValidationError) {
         return next(new BadRequest('Переданы некорректные данные при создании фильма.'));
@@ -66,7 +64,7 @@ const deleteMovie = (req, res, next) => {
       }
 
       return Movie.deleteOne(movie)
-        .then(() => res.status(200).send(movie));
+        .then(() => res.send(movie));
     })
     .catch((err) => {
       if (err instanceof CastError) {

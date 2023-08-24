@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const { errors } = require('celebrate');
-require('dotenv').config();
 const helmet = require('helmet');
 const { limiter } = require('./utils/rateLimiter');
 const { errorHeandler } = require('./middlewares/errorHeandler');
@@ -9,12 +8,11 @@ const { requestLogger, errorLogger } = require('./middlewares/logger');
 const NotFound = require('./errors/NotFound');
 const routes = require('./routes/index');
 const cors = require('./middlewares/cors');
+const { PORT, MONGO_DB } = require('./models/config');
 
 const app = express();
 
-const { PORT = 3000 } = process.env;
-
-mongoose.connect('mongodb://127.0.0.1:27017/bitfilmsdb')
+mongoose.connect(MONGO_DB)
   .then(() => {
     console.log('База данных подключена');
   })

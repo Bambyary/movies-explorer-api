@@ -14,7 +14,7 @@ const createUser = (req, res, next) => {
 
   return bcrypt.hash(password, 10)
     .then((hash) => User.create({ name, email, password: hash }))
-    .then(() => res.status(201).send({ name, email }))
+    .then(() => res.send({ name, email }))
     .catch((err) => {
       if (err.code === 11000) {
         return next(new Conflict('Пользователь с таким email уже существует.'));
@@ -34,7 +34,7 @@ const loginUser = (req, res, next) => {
   return User.findUserByCredentials(email, password)
     .then((user) => {
       const token = jwt.sign({ _id: user._id }, NODE_ENV === 'prodaction' ? JWT_SECRET : JWT_SECRET_DEV);
-      return res.status(200).send({ token });
+      return res.send({ token });
     })
     .catch((err) => next(err));
 };
@@ -42,7 +42,7 @@ const loginUser = (req, res, next) => {
 const getUserInfo = (req, res, next) => {
   User.findById(req.user._id)
     .orFail()
-    .then((user) => res.status(200).send(user))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err instanceof CastError) {
         return next(new BadRequest('Передача некорректных данных при поиске пользователя'));
@@ -61,10 +61,14 @@ const updateUser = (req, res, next) => {
 
   User.findByIdAndUpdate(req.user._id, { name, email }, { new: true, runValidators: true })
     .orFail()
-    .then((user) => res.status(200).send(user))
+    .then((user) => res.send(user))
     .catch((err) => {
       if (err instanceof ValidationError) {
         return next(new BadRequest('Переданы некорректные данные при обновлении профиля.'));
+      }
+
+      if (err.code === 11000) {
+        return next(new Conflict('Пользователь с таким email уже существует.'));
       }
 
       if (err instanceof DocumentNotFoundError) {

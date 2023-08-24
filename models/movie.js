@@ -1,7 +1,6 @@
 const mongoose = require('mongoose');
-const validator = require('validator');
 const {
-  regExpEngString, regExpRuString,
+  regExpEngString, regExpRuString, regExpForImgLinks, regExpForVideoLinks,
 } = require('../utils/constants');
 
 const movieSchema = new mongoose.Schema({
@@ -30,7 +29,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator(url) {
-        return validator.isURL(url);
+        return regExpForImgLinks.test(url);
       },
       message: 'Передана некорректная ссылка',
     },
@@ -40,7 +39,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator(url) {
-        return validator.isURL(url);
+        return regExpForVideoLinks.test(url);
       },
       message: 'Передана некорректная ссылка',
     },
@@ -50,7 +49,7 @@ const movieSchema = new mongoose.Schema({
     type: String,
     validate: {
       validator(url) {
-        return validator.isURL(url);
+        return regExpForImgLinks.test(url);
       },
       message: 'Передана некорректная ссылка',
     },
