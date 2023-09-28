@@ -14,7 +14,11 @@ const createUser = (req, res, next) => {
 
   return bcrypt.hash(password, 10)
     .then((hash) => User.create({ name, email, password: hash }))
-    .then(() => res.send({ name, email }))
+    .then(() => User.findUserByCredentials(email, password)
+      .then((user) => {
+        const token = jwt.sign({ _id: user._id }, NODE_ENV === 'prodaction' ? JWT_SECRET : JWT_SECRET_DEV);
+        return res.send({ name, email, token });
+      }))
     .catch((err) => {
       if (err.code === 11000) {
         return next(new Conflict('Пользователь с таким email уже существует.'));

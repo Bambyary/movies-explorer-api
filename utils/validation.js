@@ -17,12 +17,12 @@ const validateMoviePost = celebrate({
     duration: Joi.number().required(),
     year: Joi.string().required(),
     description: Joi.string().required(),
-    image: Joi.string().required().pattern(regExpForImgLinks),
-    trailerLink: Joi.string().required().pattern(regExpForVideoLinks),
-    thumbnail: Joi.string().required().pattern(regExpForImgLinks),
+    image: Joi.string().pattern(regExpForImgLinks).required(),
+    trailerLink: Joi.string().pattern(regExpForVideoLinks).required(),
+    thumbnail: Joi.string().pattern(regExpForImgLinks).required(),
     movieId: Joi.number().required(),
-    nameRU: Joi.string().required().pattern(regExpRuString),
-    nameEN: Joi.string().required().pattern(regExpEngString),
+    nameRU: Joi.string().pattern(regExpRuString).required(),
+    nameEN: Joi.string().pattern(regExpEngString).required(),
   }),
 });
 
