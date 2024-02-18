@@ -38,10 +38,6 @@
 
 `npm i`
 
-* Запустить сервер:
-
-`npm run start`
-
 * Запустить сервер с hot-reload:
 
 `npm run dev`
