@@ -30,9 +30,9 @@
 
 `git clone git@github.com:Bambyary/movies-explorer-api.git`
 
-* перейти в папку 'movies-explorer-api':
+* Перейти в папку 'movies-explorer-api':
   
-  `cd movies-explorer-api`
+`cd movies-explorer-api`
 
 * Установить зависимости:
 
