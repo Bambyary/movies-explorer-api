@@ -26,19 +26,22 @@
 
 ## Установка и запуск проекта
 
-Клонировать репозиторий:
+* Клонировать репозиторий в папку, где лежит (Фронтенд часть)[https://github.com/SorokinaMarina/movies-explorer-frontend]:
 
 `git clone git@github.com:Bambyary/movies-explorer-api.git`
 
-Установить зависимости:
+* перейти в папку 'movies-explorer-api':
+  `cd movies-explorer-api`
+
+* Установить зависимости:
 
 `npm i`
 
-Запустить сервер:
+* Запустить сервер:
 
 `npm run start`
 
-Запустить сервер с hot-reload:
+* Запустить сервер с hot-reload:
 
 `npm run dev`
 
