@@ -26,7 +26,7 @@
 
 ## Установка и запуск проекта
 
-* Клонировать репозиторий в папку, где лежит (Фронтенд часть)[https://github.com/SorokinaMarina/movies-explorer-frontend]:
+* Клонировать репозиторий в папку, где лежит [фронтенд часть](https://github.com/SorokinaMarina/movies-explorer-frontend):
 
 `git clone git@github.com:Bambyary/movies-explorer-api.git`
 
@@ -44,8 +44,4 @@
 
 ## Ссылки на проект
 
-IP 158.160.121.86
-
-Frontend-домен https://sorokina-diplom.nomoredomainsicu.ru
-
-Backend-домен https://api.sorokina-diplom.nomoredomainsicu.ru
+* [Репозиторий с фронтендом](https://github.com/SorokinaMarina/movies-explorer-frontend)
